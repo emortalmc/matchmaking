@@ -9,12 +9,14 @@ replace (
 
 require (
 	agones.dev/agones v1.28.0
+	github.com/EmortalMC/grpc-api-specs v0.0.0-20230102053059-65363363416f
 	github.com/golang/protobuf v1.5.2
 	github.com/google/uuid v1.3.0
 	github.com/ztrue/shutdown v0.1.1
 	go.uber.org/zap v1.16.0
 	google.golang.org/grpc v1.36.1
 	google.golang.org/protobuf v1.27.1
+	k8s.io/api v0.23.9
 	k8s.io/apimachinery v0.23.9
 	k8s.io/client-go v11.0.1-0.20191029005444-8e4128053008+incompatible
 	k8s.io/utils v0.0.0-20211116205334-6203023598ed
@@ -22,7 +24,6 @@ require (
 )
 
 require (
-	github.com/EmortalMC/grpc-api-specs v0.0.0-20230102053059-65363363416f // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/fsnotify/fsnotify v1.4.9 // indirect
 	github.com/go-logr/logr v1.2.0 // indirect
@@ -64,8 +65,8 @@ require (
 	gopkg.in/ini.v1 v1.51.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
-	k8s.io/api v0.23.9 // indirect
 	k8s.io/klog/v2 v2.30.0 // indirect
+	k8s.io/kube-openapi v0.0.0-20211115234752-e816edb12b65 // indirect
 	sigs.k8s.io/json v0.0.0-20211020170558-c049b76a60c6 // indirect
 	sigs.k8s.io/structured-merge-diff/v4 v4.2.1 // indirect
 	sigs.k8s.io/yaml v1.2.0 // indirect
