@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-frontend
+  namespace: towerdefence
+spec:
+  containers:
+    - name: matchmaker-test-frontend
+      image: emortalmc/mm-frontend-test:dev
+      imagePullPolicy: Never
+      command:
+        - "/app/frontend"
+      args:
+        - "--time_between_creations=10s"
+        - "--ticket_creation_amount=30"

@@ -1,0 +1,62 @@
+apiVersion: agones.dev/v1
+kind: Fleet
+metadata:
+  name: simulated-gameserver # marathon, lobby, block-sumo-game, minesweeper-game, etc..
+  namespace: towerdefence
+
+spec:
+  replicas: 1
+  scheduling: Distributed
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 75%
+  template:
+    spec:
+      ports:
+        - name: default
+          portPolicy: Dynamic
+          containerPort: 25565 # unused but we need this for the matchmaker
+          protocol: TCP
+
+      health:
+        initialDelaySeconds: 2
+        periodSeconds: 15
+        failureThreshold: 1
+
+      template:
+        spec:
+          containers:
+            - name: simulated-gameserver
+              image: emortalmc/mm-simulated-gs:dev
+              imagePullPolicy: Never
+              resources:
+                requests:
+                  cpu: 10m
+                  memory: 8Mi
+
+              command:
+               - "/app/gameserver"
+              args:
+                - "--enable_player_tracking=true"
+                - "--player_tracking_slots=50"
+                - "--high_density=false"
+
+---
+apiVersion: autoscaling.agones.dev/v1
+kind: FleetAutoscaler
+
+metadata:
+  name: simulated-gameserver
+  namespace: towerdefence
+
+spec:
+  fleetName: simulated-gameserver
+  policy:
+    type: Buffer
+    buffer:
+      maxReplicas: 10
+      bufferSize: 2
+      minReplicas: 2

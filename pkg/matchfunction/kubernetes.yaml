@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: matchfunction
+  namespace: towerdefence
+  labels:
+    app: matchfunction
+spec:
+  containers:
+    - name: matchfunction
+      image: emortalmc/mm-function:dev
+      imagePullPolicy: Never
+
+      ports:
+        - name: grpc
+          containerPort: 50502
+---
+#kind: Service
+#apiVersion: v1
+#metadata:
+#  name: matchfunction
+#  namespace: towerdefence
+#  labels:
+#    app: matchfunction
+#  annotations:
+#    linkerd.io/inject: enabled
+#spec:
+#  selector:
+#    app: matchfunction
+#  clusterIP: None
+#  type: ClusterIP
+#  ports:
+#    - name: grpc
+#      protocol: TCP
+#      port: 50502

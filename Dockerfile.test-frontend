@@ -1,0 +1,14 @@
+FROM golang:alpine as go
+WORKDIR /app
+ENV GO111MODULE=on
+
+COPY go.mod .
+RUN go mod download
+
+COPY . .
+RUN go build -o frontend pkg/test-frontend/main.go
+
+FROM alpine
+
+COPY --from=go /app/frontend /app/frontend
+CMD ["/app/frontend"]
