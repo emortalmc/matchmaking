@@ -1,3 +1,9 @@
+# Deprecated
+
+**We have moved to our own matchmaking system. See https://github.com/emortalmc/kurushimi**
+
+---
+
 # Matchmaking
 
 This is the core matchmaker for EmortalMC using OpenMatch and written in Golang.
